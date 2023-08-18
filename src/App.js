@@ -2,23 +2,22 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import About from "./components/About";
-import { BrowserRouter as Router, Switch, Route , Link} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";  // Update import
+import NoteState from "./context/notes/NoteState";
 
 function App() {
   return (
     <>
-      <Router>
-        <Navbar />
-        <h1>This is iNotebook</h1>
-        <Switch>
-          <Route path="/">
-            <Home />
-          </Route>
-          <Route exact path="/about">
-            <About />
-          </Route>
-        </Switch>
-      </Router>
+      <NoteState>
+        <Router>
+          <Navbar />
+          <h1>This is iNotebook</h1>
+          <Routes>  {/* Replace Switch with Routes */}
+            <Route exact path="/" element={<Home />} />  {/* Update Route syntax */}
+            <Route exact path="/about" element={<About />} />  {/* Update Route syntax */}
+          </Routes>
+        </Router>
+      </NoteState>
     </>
   );
 }
