@@ -11,11 +11,12 @@ function App() {
       <NoteState>
         <Router>
           <Navbar />
-          <h1>This is iNotebook</h1>
-          <Routes>  {/* Replace Switch with Routes */}
-            <Route exact path="/" element={<Home />} />  {/* Update Route syntax */}
-            <Route exact path="/about" element={<About />} />  {/* Update Route syntax */}
-          </Routes>
+          <div className="container">
+            <Routes>  
+              <Route exact path="/" element={<Home />} />  
+              <Route exact path="/about" element={<About />} />
+            </Routes>
+          </div>
         </Router>
       </NoteState>
     </>
