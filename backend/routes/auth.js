@@ -68,6 +68,7 @@ router.post(
     body("password", "Password can not be blank").exists(),
   ],
   async (req, res) => {
+    let success = false;
     // if there are errors, retun bad request and error detail
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -79,12 +80,12 @@ router.post(
         // Check User email exists
         let user = await User.findOne({email});
         if (!user) {
-            return res.status(400).json({ error: "Please enter correct credentails"});
+            return res.status(400).json({ success, error: "Please enter correct credentails"});
         }
         // Verify password
         const passwordCompare = await bcrypt.compare(password, user.password);
         if (!passwordCompare) {
-            return res.status(400).json({ error: "Please enter correct credentails"});
+            return res.status(400).json({ success, error: "Please enter correct credentails"});
         }
         // send payload to server for client authentication
         const data = {
@@ -93,7 +94,8 @@ router.post(
             }
           }
         const authToken = jwt.sign(data, JWT_SECRET);
-        res.json(authToken);
+        success=true
+        res.json({success,authToken});
 
     }catch (error) {
         // catch errors
