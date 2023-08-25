@@ -15,8 +15,7 @@ const NoteState = (props) => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          "auth-token":
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRkZWM1NDFmNzE5NDEyMzJiNmU5Y2VjIn0sImlhdCI6MTY5MjMyMzM5N30.UVh6q_ew0gilV7bCKVhu0jhLwgEOEU-73iUdZB3ulAk",
+          "auth-token":localStorage.getItem('token')
         }
       }
     );
@@ -36,8 +35,7 @@ const NoteState = (props) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "auth-token":
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRkZWM1NDFmNzE5NDEyMzJiNmU5Y2VjIn0sImlhdCI6MTY5MjMyMzM5N30.UVh6q_ew0gilV7bCKVhu0jhLwgEOEU-73iUdZB3ulAk",
+          "auth-token":localStorage.getItem('token')
         },
         body: JSON.stringify({title, description, tag})
       }
@@ -56,12 +54,12 @@ const NoteState = (props) => {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          "auth-token":
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRkZWM1NDFmNzE5NDEyMzJiNmU5Y2VjIn0sImlhdCI6MTY5MjMyMzM5N30.UVh6q_ew0gilV7bCKVhu0jhLwgEOEU-73iUdZB3ulAk",
+          "auth-token":localStorage.getItem('token')
         }
       }
     );
     const json =  response.json();
+    console.log(json);
 
     // Logic to delete in frontend
     const newNotes = notes.filter((note) => {
@@ -79,13 +77,13 @@ const NoteState = (props) => {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          "auth-token":
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjRkZWM1NDFmNzE5NDEyMzJiNmU5Y2VjIn0sImlhdCI6MTY5MjMyMzM5N30.UVh6q_ew0gilV7bCKVhu0jhLwgEOEU-73iUdZB3ulAk",
+          "auth-token":localStorage.getItem('token')
         },
         body: JSON.stringify({title, description, tag})
       }
     );
     const json =  await response.json();
+    console.log(json);
 
     let newNotes = JSON.parse(JSON.stringify(notes))
     // Logic to edit in frontend
